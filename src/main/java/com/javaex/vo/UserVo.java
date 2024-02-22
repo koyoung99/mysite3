@@ -8,8 +8,19 @@ public class UserVo {
 	private String name;
 	private String gender;
 
-	public UserVo() {
+public UserVo() {
+		
+	}
+	
+	public UserVo(String id) {
+		this.id = id;
+	}
 
+	public UserVo(String password, String name, String gender) {
+
+		this.password = password;
+		this.name = name;
+		this.gender = gender;
 	}
 
 	public UserVo(String id, String password) {
@@ -33,6 +44,8 @@ public class UserVo {
 		this.name = name;
 		this.gender = gender;
 	}
+
+	
 
 	public int getNo() {
 		return no;

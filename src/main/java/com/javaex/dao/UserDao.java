@@ -60,7 +60,7 @@ public class UserDao {
 
 		// 바인딩
 		pstmt = conn.prepareStatement(query);
-		
+
 		pstmt.setString(1, userVo.getId());
 		pstmt.setString(2, userVo.getPassword());
 		pstmt.setString(3, userVo.getName());
@@ -78,19 +78,18 @@ public class UserDao {
 		return count;
 
 	}
-	
-public UserVo selectUserByIdPw(UserVo userVo) {
-		
-		UserVo authUser=null;
-		
+
+	public UserVo selectUserByIdPw(UserVo userVo) {
+
+		UserVo authUser = null;
+
 		this.getConnection();
-		
+
 		try {
-			
 
 			// SQL문 준비
 			String query = "";
-			query += " select no, name ";
+			query += " select no, name, id, password ";
 			query += " from users ";
 			query += " where id=? and password=?";
 
@@ -100,30 +99,62 @@ public UserVo selectUserByIdPw(UserVo userVo) {
 			pstmt.setString(1, userVo.getId());
 			pstmt.setString(2, userVo.getPassword());
 
-			
 			// 실행
 			rs = pstmt.executeQuery();
 
 			// 4.결과처리
-			while(rs.next()) {
-				int no= rs.getInt("no");
-				String name=rs.getString("name");
-				
-				authUser= new UserVo();
+			while (rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+				String id = rs.getString("id");
+				String password = rs.getString("password");
+
+				authUser = new UserVo();
 				authUser.setNo(no);
 				authUser.setName(name);
+				authUser.setId(id);
+				authUser.setPassword(password);
 			}
-				
-				
 
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
-		
+
 		this.close();
-		
+
 		return authUser;
 	}
 
+	public void userUpdate(UserVo userVo) {
+
+		int count = -1;
+
+		this.getConnection();
+
+		try {
+
+			String query = "";
+			query += " update user set name=?, password=?, gender=? ";
+			query += " where no=? ";
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, userVo.getName());
+			pstmt.setString(2, userVo.getPassword());
+			pstmt.setString(3, userVo.getGender());
+			pstmt.setInt(4, userVo.getNo());
+
+			System.out.println("usldfhnaskj");
+
+			count = pstmt.executeUpdate();
+
+			System.out.println(count + "건 수정되었습니다.");
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		this.close();
+
+	}
 
 }

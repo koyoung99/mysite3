@@ -21,51 +21,8 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-
-			<%
-			if (authUser != null) {
-			%>
-
-			<!-- 세션영역에 값이 있으면 로그인 성공한 사람.-->
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-
-			<%
-			} else {
-			%>
-			<!-- 세션영역에 값이 없으면 로그인 안한사람.-->
-
-			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
-			</ul>
-
-			<%
-			}
-			%>
-
-
-
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</div>
-		<!-- //nav -->
+		<!-- header, nav를 불러와라 -->
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
 
 		<div id="container" class="clearfix">
@@ -102,8 +59,9 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 		</div>
 		<!-- //container -->
 
+		<!-- footer.jsp를 불러와 -->
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 
-		<div id="footer">Copyright ⓒ 2020 황일영. All right reserved</div>
 		<!-- //footer -->
 
 	</div>

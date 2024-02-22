@@ -61,20 +61,62 @@ public class UserController extends HttpServlet {
 			UserVo userVo = new UserVo(id, pw);
 
 			UserDao userDao = new UserDao();
+
 			UserVo authUser = userDao.selectUserByIdPw(userVo);
 
 			if (authUser != null) { // 로그인성공
 
 				HttpSession session = request.getSession();
 				session.setAttribute("authUser", authUser);
+				
 
 				WebUtil.redirect(request, response, "/mysite3/main");
+				
+
 			} else { // 로그인실패
 
+				WebUtil.redirect(request, response, "/mysite3/user?action=loginform");
 				System.out.println("로그인실패");
 
 			}
 
+		} else if ("logout".equals(action)) {
+			System.out.println("user>logout");
+
+			HttpSession session = request.getSession();
+			session.invalidate();
+
+			WebUtil.redirect(request, response, "/mysite3/main");
+
+		} else if ("updateform".equals(action)) {
+
+			System.out.println("user>updateform");
+			
+			
+			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyform.jsp");
+
+		} else if ("update".equals(action)) {
+
+			System.out.println("update");
+			
+//			String id = request.getParameter("id");
+//			String name = request.getParameter("name");
+//			String pw = request.getParameter("password");
+//			String gender = request.getParameter("gender");
+//			int no = Integer.parseInt(request.getParameter("no"));
+
+			
+			
+//			UserVo userVo = new UserVo(no, id,  pw,  name,  gender);
+//			UserDao userDao = new UserDao();
+//			UserVo authUser=new UserVo(no, id,  pw,  name,  gender);
+//			userDao.userUpdate(userVo);
+//			HttpSession session = request.getSession();
+//			session.setAttribute("authUser", authUser);
+//			
+			
+			
+			WebUtil.redirect(request, response, "/mysite3/main");
 		}
 
 		else {
