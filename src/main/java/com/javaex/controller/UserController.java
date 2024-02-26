@@ -68,10 +68,8 @@ public class UserController extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("authUser", authUser);
-				
 
 				WebUtil.redirect(request, response, "/mysite3/main");
-				
 
 			} else { // 로그인실패
 
@@ -91,29 +89,20 @@ public class UserController extends HttpServlet {
 		} else if ("updateform".equals(action)) {
 
 			System.out.println("user>updateform");
-			
-			
+
 			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyform.jsp");
 
 		} else if ("update".equals(action)) {
 
 			System.out.println("update");
-			
-//			String id = request.getParameter("id");
-//			String name = request.getParameter("name");
-//			String pw = request.getParameter("password");
-//			String gender = request.getParameter("gender");
-//			int no = Integer.parseInt(request.getParameter("no"));
 
 			
 			
-//			UserVo userVo = new UserVo(no, id,  pw,  name,  gender);
-//			UserDao userDao = new UserDao();
-//			UserVo authUser=new UserVo(no, id,  pw,  name,  gender);
-//			userDao.userUpdate(userVo);
-//			HttpSession session = request.getSession();
-//			session.setAttribute("authUser", authUser);
-//			
+			
+			
+			
+			
+			
 			
 			
 			WebUtil.redirect(request, response, "/mysite3/main");
