@@ -93,11 +93,12 @@ public class UserController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyform.jsp");
 
 		} else if ("update".equals(action)) {
-
+			// 수정하기
 			System.out.println("update");
 
-			
-			
+			String password=request.getParameter("password");
+			String gender=request.getParameter("gender");
+			String name=request.getParameter("name");
 			
 			
 			
